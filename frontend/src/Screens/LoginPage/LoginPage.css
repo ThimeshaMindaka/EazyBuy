@@ -1,0 +1,13 @@
+.btn{
+    margin-right: 16px;
+} 
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+.column{
+    background-image: url("../../Images/download1.jpg");
+    background-size: cover;
+    height: fit-content;
+}
