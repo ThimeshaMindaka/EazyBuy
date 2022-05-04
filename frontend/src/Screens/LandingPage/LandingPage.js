@@ -12,7 +12,7 @@ function Landingpage() {
             <div className="lp-text">
                 <div>
                     
-                    <h1 className="title">WelCome to Eazy Buy..</h1>
+                    <h1 className="title">Welcome to Eazy Buy..</h1>
                     <p className="subtitle">Select Your all   !!!!!</p>
                 </div>
                 <div className="buttonContainer">

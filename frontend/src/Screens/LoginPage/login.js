@@ -1,9 +1,43 @@
-import { Form, Button, Row, Col, Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Form, Button, Row, Col, Card, Container } from 'react-bootstrap'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Axios from 'axios'
 import './LoginPage.css' 
+import { useContext, useEffect, useState } from 'react'
+import { Store } from '../../Store'
 
 function Loginpage ()  {
+    const navigate = useNavigate();
+    const { search } = useLocation();
+    const redirectInUrl = new URLSearchParams(search).get('redirect');
+    const redirect = redirectInUrl ? redirectInUrl : '/'; 
 
+const [Email, setEmail] = useState('');
+const [Password, setPassword] = useState(''); 
+
+const {state, dispatch: ctxDispatch } = useContext(Store);
+const { userInfo } = state; 
+
+const submitHandler = async(e) => {
+    e.preventDefault();
+    try {
+        const { data } = await Axios.post('/api/users/signin', {
+            Email,
+            Password,
+        });
+        ctxDispatch({type: 'USER_SIGNIN', payload: data })
+        localStorage.setItem('userInfo', JSON.stringify(data));
+        navigate(redirect || '/');
+        console.log(data);
+    } catch (error) {
+        alert('Invalid Email or Password');
+    }
+};
+useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, redirect, userInfo]); 
+ 
     return (
         <div class='container'>
         <div class='row'>
@@ -13,14 +47,15 @@ function Loginpage ()  {
             </div>
         </div>
         <div class='col'>
+            <Container className="small-container">
         <div className='loginContainer'>
             <h1>Login</h1>
-        <Form>
+        <Form onSubmit = {submitHandler}>
             <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control 
-                type="email" 
-                //value={email}
+                type="Email" 
+               // value={Email}
                 placeholder="Enter email" 
                 //onChange={(e) => setEmail(e.target.value)}
              />
@@ -29,9 +64,9 @@ function Loginpage ()  {
             <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control 
-                type="password" 
+                type="Password" 
                 required
-               // value={password} 
+               // value={Password} 
                 placeholder="Password" 
                 //onChange={(e) => setPassword(e.target.value)}
             />
@@ -49,6 +84,7 @@ function Loginpage ()  {
                 </Col>
             </Row>
         </div>
+        </Container>
         </div>
         </div>
         </div>
