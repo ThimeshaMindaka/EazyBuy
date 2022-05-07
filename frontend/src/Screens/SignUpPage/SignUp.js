@@ -19,9 +19,6 @@ const [ContactNumber, setContactNumber] = useState('');
 const [Password, setPassword] = useState('');
 const [ConfirmPassword, setConfirmPassword] = useState('');
 
-const {state, dispatch: ctxDispatch } = useContext(Store);
-const { userInfo } = state;
-
 const submitHandler = async(e) => {
     e.preventDefault();
     if(Password !== ConfirmPassword) {
@@ -37,20 +34,13 @@ const submitHandler = async(e) => {
             ContactNumber,
             Password,
         });
-        ctxDispatch({type: 'USER_SIGNIN', payload: data })
         localStorage.setItem('userInfo', JSON.stringify(data));
-        navigate(redirect || '/');
+        navigate('/login');
         console.log(data);
     } catch (error) {
         alert('Invalid Email or Password');
     }
 };
-
-useEffect(() => {
-    if (userInfo) {
-      navigate(redirect);
-    }
-  }, [navigate, redirect, userInfo]);
 
     /*const demo = () => {
             setName("Kaveesha")
