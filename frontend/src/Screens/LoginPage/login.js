@@ -4,6 +4,7 @@ import Axios from 'axios'
 import './LoginPage.css'
 import { useEffect, useState } from 'react'
 import { Store } from '../../Store'
+import { toast } from 'react-toastify'
 
 function Loginpage() {
     const navigate = useNavigate();
@@ -26,7 +27,14 @@ function Loginpage() {
             });
             // ctxDispatch({ type: 'USER_SIGNIN', payload: data })
             localStorage.setItem('userInfo', JSON.stringify(data));
-            navigate('/home');
+            if(data.isAdmin == true){
+                
+                navigate('/home');
+            }
+            else{
+
+            }
+            toast.error('Ligin Success');
             console.log(data);
         } catch (error) {
             alert('Invalid Email or Password');

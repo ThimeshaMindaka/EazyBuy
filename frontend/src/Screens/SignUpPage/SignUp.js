@@ -35,6 +35,7 @@ const submitHandler = async(e) => {
             Password,
         });
         localStorage.setItem('userInfo', JSON.stringify(data));
+    
         navigate('/login');
         console.log(data);
     } catch (error) {
