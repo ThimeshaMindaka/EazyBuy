@@ -1,5 +1,5 @@
 import React, { useState , useEffect} from 'react';
-import { Container, Row, Button, Image } from 'react-bootstrap'
+import { Container, Row, Button, Image, Table } from 'react-bootstrap'
 import "./HomePage.css"
 import {Link , useNavigate , useLocation} from "react-router-dom"
 
@@ -17,23 +17,45 @@ function Homepage(props) {
     
     return (
         
-        <div className="main">
+        
         <Container>
         <Row>
             <div className="lp-text">
-                <div>
-                    
-                    <h1 className="title">Welcome to Eazy Buy..</h1>
-                    <p className="subtitle">Home Page  !!!!!</p>
-                </div>
-                <div className="buttonContainer">
-                        <Button onClick={()=> navigate('/profile')} size='lg' className='landingbutton'>{userData?.UserName}</Button>
-                    
-                </div>
+                <br />
+            <Table striped bordered hover variant="dark">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td colSpan={2}>Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</Table>
+               
             </div>
         </Row>
         </Container>
-    </div>
+    
         
     )
 }

@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes,Route } from "react-router-dom";
 import LandingPage from './Screens/LandingPage/LandingPage';
 import Navbar from 'react-bootstrap/Navbar';
@@ -10,8 +10,18 @@ import SignUpPage from './Screens/SignUpPage/SignUp';
 import Homepage from './Screens/Homepage/HomePage';
 import Profile from './Screens/Profile/Profile';
 import ProfileUpdate from './Screens/ProfileUpdate/ProfileUpdate';
+import { NavDropdown } from 'react-bootstrap';
+
 
 function App() {
+ 
+  const [userData, setUserData] = useState(null);
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('userInfo'))
+        setUserData(userData)
+        console.log("uD" , userData);
+    }, [])
+  
   
   document.title = "Eazy Buy";
   return (
@@ -23,6 +33,16 @@ function App() {
           <LinkContainer to="/">
             <Navbar.Brand>Eazy Buy</Navbar.Brand>
           </LinkContainer>
+          {userData ? ( <>
+            <NavDropdown title={userData?.UserName} id="nav-dropdown">
+                      <LinkContainer to="/profile">
+                        <NavDropdown.Item>User Profile</NavDropdown.Item>
+                      </LinkContainer>
+                      
+                      <NavDropdown.Divider />
+                      
+                    </NavDropdown>
+          </>):null}
         </Container>
       </Navbar>
       

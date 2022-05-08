@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     background-image: url("../../Images/background.jpg");
+    opacity: 0.2;
     background-position: center;
     background-size: cover;
 }

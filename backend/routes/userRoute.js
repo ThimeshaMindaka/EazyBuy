@@ -125,5 +125,13 @@ userRouter.delete(
     })
   );
 
+  userRouter.get(
+      '/all',
+      expressAsyncHandler(async (req,res) => {
+          const user = await User.find({isAdmin:"false"});
+
+          res.json(user);
+      })
+  )
 
 export default userRouter;
