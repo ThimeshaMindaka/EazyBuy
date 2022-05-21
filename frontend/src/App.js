@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import AddFeedback from './screens/AddFeedback';
+import AllFeedback from './screens/AllFeedback';
+import UpdateFeedback from './screens/UpdateFeedback';
+import AdminViewFeedback from './screens/AdminViewFeedback';
+import AdminUpdateDelete from './screens/AdminUpdateDeleteFeedback';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Routes>
+          <Route path="/adminupdate/:id" exact component={AdminUpdateDelete} />
+          <Route path="/admin" exact component={AdminViewFeedback} />
+          <Route path="/add" exact component={AddFeedback} />
+          <Route path="/update/:id" exact component={UpdateFeedback} />
+          <Route path="/" exact component={AllFeedback} />
+        </Routes>
+      </Router>
     </div>
   );
 }
