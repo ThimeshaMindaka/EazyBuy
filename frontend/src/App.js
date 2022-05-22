@@ -21,6 +21,8 @@ function App() {
         setUserData(userData)
         console.log("uD" , userData);
     }, [])
+
+
   
   
   document.title = "Eazy Buy";
@@ -34,14 +36,20 @@ function App() {
             <Navbar.Brand>Eazy Buy</Navbar.Brand>
           </LinkContainer>
           {userData ? ( <>
+          if ({userData?.isAdmin === true}) {
+            <LinkContainer to="/">
+              <Navbar.Brand>Feedbacks</Navbar.Brand>
+            </LinkContainer>
+          }
             <NavDropdown title={userData?.UserName} id="nav-dropdown">
                       <LinkContainer to="/profile">
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
-                      
-                      <NavDropdown.Divider />
-                      
-                    </NavDropdown>
+                        <NavDropdown.Divider />
+                        <LinkContainer to="/logout">
+                        <NavDropdown.Item>Logout</NavDropdown.Item>
+                      </LinkContainer>
+            </NavDropdown>
           </>):null}
         </Container>
       </Navbar>
@@ -55,6 +63,7 @@ function App() {
       <Route path="/home" element={<Homepage />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile-update" element={<ProfileUpdate />} />
+  
     </Routes>
     </main>
   </div>
