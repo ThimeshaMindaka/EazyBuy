@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes,Route } from "react-router-dom";
@@ -11,6 +12,11 @@ import Homepage from './Screens/Homepage/HomePage';
 import Profile from './Screens/Profile/Profile';
 import ProfileUpdate from './Screens/ProfileUpdate/ProfileUpdate';
 import { NavDropdown } from 'react-bootstrap';
+import AddFeedback from './screens/AddFeedback';
+import AllFeedback from './screens/AllFeedback';
+import UpdateFeedback from './screens/UpdateFeedback';
+import AdminViewFeedback from './screens/AdminViewFeedback';
+import AdminUpdateDelete from './screens/AdminUpdateDeleteFeedback';
 
 
 function App() {
@@ -63,6 +69,11 @@ function App() {
       <Route path="/home" element={<Homepage />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/profile-update" element={<ProfileUpdate />} />
+      <Route path="/adminupdate/:id" exact component={AdminUpdateDelete} />
+          <Route path="/admin" exact component={AdminViewFeedback} />
+          <Route path="/add" exact component={AddFeedback} />
+          <Route path="/update/:id" exact component={UpdateFeedback} />
+          <Route path="/" exact component={AllFeedback} />
   
     </Routes>
     </main>
